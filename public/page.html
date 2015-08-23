@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App | Page</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand hidden-xs" href="#">TODO web-app</a>
+            </div>
+            {% raw %}
+            <div class="navbar-text navbar-right" ng-controller="DropdownCtrl">
+                <span dropdown on-toggle="toggled(open)">Signed as 
+					<a href id="simple-dropdown" dropdown-toggle>
+						{{user.login}}
+					</a>
+				<ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+					<li>
+						<a href="/logout">Logout</a>
+					</li>
+				</ul>
+				</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row" ng-controller="TodoListController as todoList">
+                <div class="col-sm-3 well">
+                    <form class="form" class="" ng-submit="todoList.addTodo()">
+                        <div class="form-group">
+                            <label class="sr-only" for="text-todo">TODO</label>
+                            <input type="text" name="text-todo" class="form-control input-lg todo-add" placeholder="New todo" ng-model="todoList.todoText">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="btn-todo">TODO</label>
+                            <input name="btn-todo" class="btn btn-primary btn-lg btn-add" type="submit" class="form-control" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-9">
+                    <div class="todo-wrapper">
+<<<<<<< HEAD
+                        <ul class="list-unstyled to" id="todo-list">
+                            <li ng-repeat="todo in todoList.todos | orderBy:'-done'">
+                                <div class="well">
+									<input type="checkbox" ng-model="todo.done"/>
+                                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                                    <span class="pull-right"><button class="btn-delete" ng-click="todoList.delete(todo)"><i class="fa fa-trash-o"></i></button></span>
+									<br><span class="todo-date done-{{todo.done}}">{{todo.date | date:'dd-MM-yyyy'}}</span>
+=======
+                        <ul class="list-unstyled">
+                            <li ng-repeat="todo in todoList.todos">
+                                <div class="well">
+                                    <span>{{todo.text}}</span>
+                                    <span class="pull-right"><button class="btn-delete" ng-click="todoList.delete(todo)"><i class="fa fa-trash-o"></i></button></span>
+>>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endraw %}
+            </div>
+        </div>
+    </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
+</body>
+
+</html>
