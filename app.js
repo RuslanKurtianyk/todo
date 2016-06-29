@@ -7,10 +7,8 @@ var session = require('express-session');
 var DB = require('./db');
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
-<<<<<<< HEAD
+
 var port = 80;
-=======
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
 
 app.use(session({
     secret: 'QWdfasf2342fDdww2',
@@ -70,16 +68,11 @@ app.post('/showAllTodo', function (req, res) {
     var query = DB.connection.query('SELECT * FROM todos WHERE user_id = ?', [req.session.user_id], function (err, rows, fields) {
         if (err) throw err;
         if (rows[0]) {
-<<<<<<< HEAD
-            res.json(rows);
-        } else {
-            console.log('Current user haven\'t any todos');
-=======
+
             var result = JSON.stringify(rows);
             res.json(rows);
         } else {
             console.log('error 111');
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
         }
     });
 });
@@ -89,20 +82,13 @@ app.post('/showAllTodo', function (req, res) {
 app.post('/login', function (req, res) {
     var query = DB.connection.query('SELECT * FROM users WHERE name = ? AND password = ?', [req.body.login, req.body.password], function (err, rows, fields) {
         if (err) throw err;
-<<<<<<< HEAD
-=======
-        console.log("inside 2 login 2");
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
         if (rows[0] && rows[0].secret == "") {
             req.session.user_id = rows[0].id;
             req.session.user_hash = rows[0].hash;
             req.session.user_name = rows[0].name;
             res.send('/main');
         } else {
-<<<<<<< HEAD
 			res.json({message: 'Wrong login or password'});
-=======
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
             console.log('error');
         }
     });
@@ -119,9 +105,6 @@ app.post('/register', function (req, res) {
     var smtpTransport = require('nodemailer-smtp-transport');
     var nodemailer = require('nodemailer');
     var _error = '';
-<<<<<<< HEAD
-	
-=======
 
     //checking if user exists
     var query = DB.connection.query('SELECT * FROM users WHERE name = ?', [name], function (err, rows, fields) {
@@ -134,7 +117,6 @@ app.post('/register', function (req, res) {
         };
     });
     // send mail
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
     var transport = nodemailer.createTransport(
         smtpTransport({
             service: 'Yandex',
@@ -144,7 +126,6 @@ app.post('/register', function (req, res) {
             }
         })
     );
-<<<<<<< HEAD
 	
 	var params = {
         from: 'rus-kurtyanik@yandex.ru',
@@ -169,19 +150,11 @@ app.post('/register', function (req, res) {
     });
     // send mail
    
-=======
-    var params = {
-        from: 'rus-kurtyanik@yandex.ru',
-        to: email,
-        subject: 'Email confirmation',
-        text: 'Welcome, ' + name + '!\n Please confirm your E-Mail.\n To do this, go to\n http://localhost/confirm/' + secretcode + '\n Thanks for using Todo App!\nThe TodoApp Team'
-    };
     transport.sendMail(params, function (err, res) {
         if (err) {
             console.error(err);
         }
     });
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
 });
 /*
  * remove Todo from DB
@@ -196,17 +169,12 @@ app.post('/removetodo', function (req, res) {
  */
 app.post('/addtodo', function (req, res) {
     var text = req.body.text;
-<<<<<<< HEAD
 	var done = req.body.done;
 	var todoDate = req.body.date;
     var currentUser = req.session.user_id;
     DB.saveTodo(currentUser, text, done, todoDate);
 	console.log(req);
-=======
-    var date = new Date();
-    var currentUser = req.session.user_id;
-    DB.saveTodo(currentUser, text);
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
+
 });
 /*
  * Checking Authorization
@@ -233,12 +201,9 @@ app.get('/logout', function (req, res) {
     delete req.session.user_id;
     delete req.session.user_hash;
     delete req.session.user_name;
-<<<<<<< HEAD
-    res.redirect('/');
-=======
 
-    res.redirect('/main');
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
+    res.redirect('/');
+
 });
 /*
  * get MD5 Hash
@@ -249,11 +214,7 @@ function getMD5(data) {
     /*
      * Start server
      */
-<<<<<<< HEAD
+
 http.createServer(app).listen(port, function () {
     console.log("Express server listening on port - "+port);
-=======
-http.createServer(app).listen(80, function () {
-    console.log("Express server listening on port 80");
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
 });

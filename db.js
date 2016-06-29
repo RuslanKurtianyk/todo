@@ -27,15 +27,11 @@ function createUser(_name, _email, _password, _hash, _secretcode, callback) {
     });
     console.log(query.sql);
 }
-<<<<<<< HEAD
+
 // insert todo
 function saveTodo(user, text, done, todoDate) {
         var query = connection.query('INSERT INTO todos (user_id, text, done, date) VALUES ( ?, ?, ?, ?)', [user, text, done, todoDate], function (err, result) {
-=======
 
-function saveTodo(user, text) {
-        var query = connection.query('INSERT INTO todos (user_id, text) VALUES ( ?, ?)', [user, text], function (err, result) {
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
             if (err) throw err;
             else
                 console.log('Inserted text: ' + text);
@@ -43,11 +39,9 @@ function saveTodo(user, text) {
         });
         console.log(query.sql);
     }
-<<<<<<< HEAD
+
 // remove todo
-=======
-    // remove 
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
+
 function removeTodo(text) {
 
     var query = connection.query('DELETE FROM todos WHERE text = ?', [text], function (err, result) {
@@ -61,9 +55,5 @@ function removeTodo(text) {
 exports.saveTodo = saveTodo;
 exports.removeTodo = removeTodo;
 exports.createUser = createUser;
-<<<<<<< HEAD
 exports.connection = connection;
 
-=======
-exports.connection = connection;
->>>>>>> a93d36d4feaa23f8e21a42548891ec66c8ae5331
