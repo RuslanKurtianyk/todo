@@ -63,11 +63,12 @@
                 };
                 // delete task
                 todoList.delete = function (toDelete) {
+
                     var oldTodos = todoList.todos;
                     todoList.todos = [];
+
                     angular.forEach(oldTodos, function (todo) {
                         if (toDelete == todo) {
-                            $http.post('/removetodo',{text: toDelete.text}).success(function (response) {
                             var posting = $http({
                                 method: 'POST',
                                 /*posting to /removetodo */
@@ -88,13 +89,14 @@
                 };
             });
 
+
+
             todo.controller('DropdownCtrl', function ($scope, $log) {
                 // get user from localStorage
                 var localUser = localStorage.getItem('currentUser');
                 $scope.user = JSON.parse(localUser);
 
                 $scope.logout = function () {
-                    $http.post('/logout','').success(function (response) {
                     var posting = $http({
                         method: 'POST',
                         /*posting to /login */
@@ -122,12 +124,12 @@
                 };
             });
 
+
             // registration
             todo.controller('UserController', function ($scope, $http, $window) {
                 $scope.data = {}
                 $scope.response = {}
                 $scope.createUser = function () {
-                    $http.post('/register',$scope.data).success(function (response) {
                     var posting = $http({
                         method: 'POST',
                         /*posting to /register */
@@ -142,6 +144,8 @@
                     });
                 }
             });
+
+
             // login
             todo.controller('LoginController', function ($scope, $http, $window) {
                 $scope.data = {}
